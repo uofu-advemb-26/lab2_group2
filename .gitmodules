@@ -17,6 +17,3 @@
 [submodule "lib/unity"]
 	path = lib/unity
 	url = git@github.com:ThrowTheSwitch/Unity.git
-[submodule "lib/freertos"]
-	path = lib/freertos
-	url = git@github.com:FreeRTOS/FreeRTOS-Kernel.git
