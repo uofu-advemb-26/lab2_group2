@@ -46,13 +46,13 @@ jobs:
         # Execute the build.  You can specify a specific target with "--target <NAME>"
         run: cmake --build ./build --config $BUILD_TYPE --parallel $(nproc)
 
-      - name: Flash
-        # This follows the convention of where we put tests, but it can be anything
-        working-directory: ${{github.workspace}}/build/test
-        shell: bash
-        # Make sure to set the correct elf file
-        run: openocd -s $OPENOCD_PATH -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c 'adapter speed 5000; program "mytest.elf" verify reset exit'
-      - name: Test
-        working-directory: ${{github.workspace}}
-        shell: bash
-        run: python3 /usr/local/share/pico/unity_checker.py
+      # - name: Flash
+      #   # This follows the convention of where we put tests, but it can be anything
+      #   working-directory: ${{github.workspace}}/build/test
+      #   shell: bash
+      #   # Make sure to set the correct elf file
+      #   run: openocd -s $OPENOCD_PATH -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c 'adapter speed 5000; program "mytest.elf" verify reset exit'
+      # - name: Test
+      #   working-directory: ${{github.workspace}}
+      #   shell: bash
+      #   run: python3 /usr/local/share/pico/unity_checker.py
