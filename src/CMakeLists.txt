@@ -8,8 +8,8 @@ pico_set_program_version(hello_freertos "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB.
 # These are mutually exclusive, only set one.
-pico_enable_stdio_uart(hello_freertos 0)
-pico_enable_stdio_usb(hello_freertos 1)
+pico_enable_stdio_uart(hello_freertos 1)
+pico_enable_stdio_usb(hello_freertos 0)
 
 # Add the libraries to the build
 target_link_libraries(hello_freertos PRIVATE
@@ -35,5 +35,4 @@ find_program(OPENOCD openocd)
 find_program(PICOTOOL picotool)
 
 add_custom_target(flash ${PICOTOOL} load -f $<TARGET_FILE:hello_freertos> DEPENDS hello_freertos)
-
-add_custom_target(openocd_flash ${OPENOCD} -s ${OPENOCD_PATH} -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c 'adapter speed 5000; program "$<TARGET_FILE:hello_freertos>" verify reset exit' DEPENDS hello_freertos)
+add_custom_target(openocd_flash ${OPENOCD} -s ${OPENOCD_PATH} -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c 'adapter speed 5000' -c program "$<TARGET_FILE:hello_freertos>" verify reset exit' DEPENDS hello_freertos)
