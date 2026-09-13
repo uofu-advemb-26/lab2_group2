@@ -23,10 +23,17 @@ bool on = false;
 
 void blink_task(__unused void *params) {
     hard_assert(cyw43_arch_init() == PICO_OK);
+
+    // Convert 100 ms delay to FreeRTOS ticks
+    const TickType_t delay = 100 / portTICK_PERIOD_MS;
+
     while (true) {
+        // Write internal LED state to the LED
         cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, on);
-        if (count++ % 11) on = !on;
-        vTaskDelay(500);
+        
+        // Flip the internal LED state after the proper delay
+        vTaskDelay(delay);
+        on = !on;
     }
 }
 

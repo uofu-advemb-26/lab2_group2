@@ -1,6 +1,7 @@
 Testing
-build
+**/build/
 log
+.vscode/
 
 *.log.*
 *-asciinema
