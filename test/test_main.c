@@ -25,8 +25,9 @@ int main (void)
         RUN_TEST(test_console_notAlpha);
 
         // Run blink.c tests
-        RUN_TEST(test_led_off);
         RUN_TEST(test_led_on);
+        RUN_TEST(test_led_off);
+        RUN_TEST(test_led_states);
 
         UNITY_END();
         sleep_ms(5000);
