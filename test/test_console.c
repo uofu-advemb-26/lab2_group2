@@ -33,7 +33,7 @@ void test_console_notAlpha(void)
 {
 	char c = '&';
 	char expected = '&';
-	char actual = switch_case(c)
+	char actual = switch_case(c);
 
 	TEST_ASSERT_TRUE_MESSAGE(actual == expected, "Failed to return non-alphabetic char.");
 }

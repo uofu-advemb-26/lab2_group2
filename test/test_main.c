@@ -28,7 +28,7 @@ int main (void)
         RUN_TEST(test_led_off);
         RUN_TEST(test_led_on);
 
-        sleep_ms(5000);
         UNITY_END();
+        sleep_ms(5000);
     }
 }
