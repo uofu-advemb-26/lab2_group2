@@ -10,6 +10,7 @@
 #define BLINK_TASK_PRIORITY   ( tskIDLE_PRIORITY + 2UL )
 #define BLINK_TASK_STACK_SIZE configMINIMAL_STACK_SIZE
 
+void do_led_logic(int *count, bool *state);
 void write_led(bool state);
 void create_blink_task(void);
 void blink_task(__unused void *params);
