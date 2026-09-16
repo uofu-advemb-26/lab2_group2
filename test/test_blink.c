@@ -12,6 +12,26 @@ void test_led_on() {
     TEST_ASSERT_TRUE_MESSAGE(cyw43_arch_gpio_get(CYW43_WL_GPIO_LED_PIN), "Failed to turn LED on");
 }
 
+// Test that the logic used to drive the LED's state increments count correctly
+void test_led_state_counter() {
+    // Actual starting conditions
+    bool state = 0;
+    int count = 0;
+    int last_count = 0;
+
+    // Test over slightly more than two cycles
+    for (int i=0; i < 24; i++) {
+        // Run the LED driver logic
+        do_led_logic(&count, &state);
+
+        // `count` should increase by one each time
+        TEST_ASSERT_EQUAL_INT_MESSAGE(last_count + 1, count, "LED logic driver failed to increment count correctly");
+
+        // Save the value of count prior to running the next test
+        last_count = count;
+    }
+}
+
 // Test the 'flip 10 times out of 11' logic used to drive the LED
 void test_led_states() {
     // What the next state should be (according to the original logic) for a sequence of
@@ -26,7 +46,7 @@ void test_led_states() {
 
     // Capture the outputs
     for (int i=0; i < NUM_ELEM(expected_next_state); i++) {
-        // Force the count to the expected value for every test
+        // Force the count to the expected value for every test (this test is independent of count)
         int count = i;
 
         // Capture the logic output

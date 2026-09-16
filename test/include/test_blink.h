@@ -11,6 +11,7 @@
 
 void test_led_off();
 void test_led_on();
+void test_led_state_counter();
 void test_led_states();
 
 #endif

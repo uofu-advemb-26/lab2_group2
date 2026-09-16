@@ -27,6 +27,7 @@ int main (void)
         // Run blink.c tests
         RUN_TEST(test_led_on);
         RUN_TEST(test_led_off);
+        RUN_TEST(test_led_state_counter);
         RUN_TEST(test_led_states);
 
         UNITY_END();
