@@ -21,7 +21,7 @@ bool on = false;
 #define MAIN_TASK_PRIORITY      ( tskIDLE_PRIORITY + 1UL )
 #define BLINK_TASK_PRIORITY     ( tskIDLE_PRIORITY + 2UL )
 
-// Both tasks have a 128-byte stack
+// Both tasks have a 128-word stack
 #define MAIN_TASK_STACK_SIZE configMINIMAL_STACK_SIZE
 #define BLINK_TASK_STACK_SIZE configMINIMAL_STACK_SIZE
 
@@ -43,10 +43,6 @@ void blink_task(__unused void *params) {
 }
 
 void main_task(__unused void *params) {
-    // Create a new task for the already-running scheduler to run with a higher priority
-    xTaskCreate(blink_task, "BlinkThread",
-                BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY, NULL);
-
     // Copy any input characters to output and flip their case (lowercase -> uppercase; uppercase -> lowercase)
     char c;
     while(c = getchar()) {
@@ -65,10 +61,14 @@ int main( void )
     const char *rtos_name;
     rtos_name = "FreeRTOS";
 
-    // Create the main task with a minimal stack and low priority; pass no parameters
+    // Create the console task with a minimal stack and low priority; pass no parameters
     TaskHandle_t task;
     xTaskCreate(main_task, "MainThread",
                 MAIN_TASK_STACK_SIZE, NULL, MAIN_TASK_PRIORITY, &task);
+
+    // Create the blink task with a higher priority
+    xTaskCreate(blink_task, "BlinkThread",
+                BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY, NULL);
 
     // Enter the FreeRTOS scheduler (no return)
     vTaskStartScheduler();

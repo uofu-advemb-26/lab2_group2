@@ -1,7 +1,7 @@
 # This is the main binary. List your C files here.
 add_executable(blink
     blink.c
-    )
+)
 
 pico_set_program_name(blink "test")
 pico_set_program_version(blink "0.1")
