@@ -45,16 +45,6 @@ void blink_task(__unused void *params) {
     }
 }
 
-void main_task(__unused void *params) {
-    // Copy any input characters to output and flip their case (lowercase -> uppercase; uppercase -> lowercase)
-    char c;
-    while(c = getchar()) {
-        if (c <= 'z' && c >= 'a') putchar(c - 32); // Switch to uppercase
-        else if (c >= 'A' && c <= 'Z') putchar(c + 32); // Switch to lowercase
-        else putchar(c); // No flips on non-alphabetical characters
-    }
-}
-
 int main( void )
 {
     // Initialize the standard IO ports for UART communication
