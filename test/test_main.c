@@ -18,6 +18,11 @@ int main (void)
         printf("Start tests\n");
         UNITY_BEGIN();
         // RUN_TEST(function);
+
+        RUN_TEST(test_console_toUppercase);
+        RUN_TEST(test_console_toLowercase);
+        RUN_TEST(test_console_notAlpha);
+
         sleep_ms(5000);
         UNITY_END();
     }
