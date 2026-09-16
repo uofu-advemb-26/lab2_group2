@@ -16,11 +16,8 @@
 #include "blink.h"
 #include "console.h"
 
-// In FreeRTOS, higher numbers correspond to higher priorities.
-// This means the blink task takes priority over the main (console) task
 #define MAIN_TASK_PRIORITY      ( tskIDLE_PRIORITY + 1UL )
 
-// Both tasks have a 128-word stack
 #define MAIN_TASK_STACK_SIZE configMINIMAL_STACK_SIZE
 
 void main_task(__unused void *params) {

@@ -10,7 +10,7 @@ void blink_task(__unused void *params) {
     // Flash the LED with about 0.5 seconds on and 0.5 seconds off
     while (true) {
         // Write to the LED
-        cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, on);
+        write_led(on);
 
         // Probably a bug; LED state flips 9 times out of 10
         if (count++ % 11) on = !on;
@@ -18,6 +18,10 @@ void blink_task(__unused void *params) {
         // 500ms delay (parameter is in ticks, but FreeRTOS on the Pico is configured for 1 tick per ms)
         vTaskDelay(500);
     }
+}
+
+void write_led(const bool state) {
+    cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, state);
 }
 
 void create_blink_task(void) {
