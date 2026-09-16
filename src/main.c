@@ -3,22 +3,9 @@
  *
  * SPDX-License-Identifier: BSD-3-Clause
  */
-
-#include <stdio.h>
-
 #include "FreeRTOS.h"
-#include "task.h"
-
-#include "pico/stdlib.h"
-#include "pico/multicore.h"
-#include "pico/cyw43_arch.h"
-
 #include "blink.h"
 #include "console.h"
-
-#define MAIN_TASK_PRIORITY      ( tskIDLE_PRIORITY + 1UL )
-
-#define MAIN_TASK_STACK_SIZE configMINIMAL_STACK_SIZE
 
 int main( void )
 {
@@ -29,11 +16,8 @@ int main( void )
     const char *rtos_name;
     rtos_name = "FreeRTOS";
 
-    // Create the console task with a minimal stack and low priority; pass no parameters
-    TaskHandle_t task;
-    xTaskCreate(main_task, "MainThread",
-                MAIN_TASK_STACK_SIZE, NULL, MAIN_TASK_PRIORITY, &task);
-
+    // Create the two tasks required for this program
+    create_console_task();
     create_blink_task();
 
     // Enter the FreeRTOS scheduler (no return)

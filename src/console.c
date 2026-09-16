@@ -16,3 +16,8 @@ void main_task(__unused void *params)
     }
 }
 
+void create_console_task(void) {
+    // Create the console task with a minimal stack and low priority; pass no parameters
+    xTaskCreate(main_task, "MainThread",
+                MAIN_TASK_STACK_SIZE, NULL, MAIN_TASK_PRIORITY, NULL);
+}
