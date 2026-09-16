@@ -3,7 +3,9 @@ include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
 add_executable(test_all
   test_main.c
   test_blink.c
+  ../src/blink.c
   test_console.c
+  ../src/console.c
   unity_config.c
 )
 

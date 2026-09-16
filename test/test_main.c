@@ -13,15 +13,20 @@ void tearDown(void) {}
 int main (void)
 {
     stdio_init_all();
+    hard_assert(cyw43_arch_init() == PICO_OK);
     while (1) {
         sleep_ms(5000); // Give time for TTY to attach.
         printf("Start tests\n");
         UNITY_BEGIN();
-        // RUN_TEST(function);
 
+        // Run console.c tests
         RUN_TEST(test_console_toUppercase);
         RUN_TEST(test_console_toLowercase);
         RUN_TEST(test_console_notAlpha);
+
+        // Run blink.c tests
+        RUN_TEST(test_led_off);
+        RUN_TEST(test_led_on);
 
         sleep_ms(5000);
         UNITY_END();
