@@ -1,6 +1,8 @@
 # This is the main binary. List your C files here.
 add_executable(blink
+    main.c
     blink.c
+    console.c
 )
 
 pico_set_program_name(blink "test")
