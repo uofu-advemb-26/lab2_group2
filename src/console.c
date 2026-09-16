@@ -12,7 +12,7 @@ void main_task(__unused void *params)
     // Copy any input characters to output and flip their case (lowercase -> uppercase; uppercase -> lowercase)
     char c;
     while(c = getchar()) {
-        switch_case(c);
+        putchar(switch_case(c));
     }
 }
 
