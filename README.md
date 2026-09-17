@@ -1,3 +1,5 @@
+![testing workflow](https://github.com/uofu-advemb-26/lab2_group2/actions/workflows/main.yml/badge.svg)
+
 # Lab 2. Writing testable code
 
 # Learning objectives:
