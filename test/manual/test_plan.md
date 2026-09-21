@@ -35,4 +35,17 @@
     - Expected Result: `LONG_OFF` has a duration of approximately 1.0 second.
 5. Type characters in the terminal connection to the Pico.
     - Expected Result: The LED continues to flash with the same pattern at the same rate.
-6. < add console test cases here >
+
+### Switching Character Case
+1. Type the character `a` into the terminal.
+    - Expected Result: The character `A` is printed on the console.
+2. Type the character `z` into the terminal.
+    - Expected Result: The character `Z` is printed on the console.
+3. Type the character `A` into the terminal.
+    - Expected Result: The character `a` is printed on the console.
+4. Type the character `Z` into the terminal.
+    - Expected Result: The character `z` is printed on the console.
+5. Type the character `0` into the terminal.
+    - Expected Result: The character `0` is printed on the console.
+6. Type the character `!` into the terminal.
+    - Expected Result: The character `!` is printed on the console.
